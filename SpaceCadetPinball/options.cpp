@@ -65,7 +65,7 @@ void options::init()
 	}
 
 	Options.Sounds = 1;
-	Options.Music = 1;
+	Options.Music = 0;
 	Options.FullScreen = 0;
 	Options.LeftFlipperKeyDft = SDLK_z;
 	Options.RightFlipperKeyDft = SDLK_SLASH;
@@ -180,12 +180,8 @@ void options::toggle(Menu1 uIDCheckItem)
 		Sound::Enable(0, 7, newValue);
 		return;
 	case Menu1::Music:
-		newValue = Options.Music == 0;
 		Options.Music = Options.Music == 0;
-		if (!newValue)
-			midi::music_stop();
-		else
-			midi::play_pb_theme(0);
+		midi::music_stop();
 		return;
 	case Menu1::Full_Screen:
 		newValue = Options.FullScreen == 0;
